@@ -35,12 +35,12 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-lg font-medium mb-2">Phone</h3>
                 <a href="tel:+1234567890" className="text-muted-foreground hover:text-foreground transition-colors">
-                  +1 (234) 567-890
+                  123456789
                 </a>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Location</h3>
-                <p className="text-muted-foreground">Los Angeles, California</p>
+                <p className="text-muted-foreground">India</p>
               </div>
               <div>
                 <h3 className="text-lg font-medium mb-2">Social</h3>
