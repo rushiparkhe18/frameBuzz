@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0">
             <Link href="/" className="text-xl font-light tracking-tight">
-              frameBuzz
+              framebuzzmedia
             </Link>
             <p className="text-sm text-muted-foreground mt-2 max-w-xs">
               Professional videography capturing life one frame at a time through cinematic storytelling
@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-end">
             <SocialLinks />
             <p className="text-xs text-muted-foreground mt-4">
-              © {new Date().getFullYear()} frameBuzz. All rights reserved.
+              © {new Date().getFullYear()} framebuzzmedia. All rights reserved.
             </p>
           </div>
         </div>

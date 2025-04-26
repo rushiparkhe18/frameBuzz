@@ -37,7 +37,7 @@ export default function Navigation() {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="text-xl font-light tracking-tight">
-          frameBuzz
+          framebuzzmedia
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">

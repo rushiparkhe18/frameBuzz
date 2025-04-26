@@ -2,7 +2,6 @@
 
 import { useRef } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
@@ -18,14 +17,22 @@ export default function AboutPreview() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-[3/4] w-full max-w-md mx-auto lg:max-w-none"
+            className="relative w-full max-w-md mx-auto lg:max-w-none"
           >
-            <Image
-              src="/placeholder.svg?height=900&width=600"
-              alt="Videographer portrait"
-              fill
-              className="object-cover rounded-lg"
-            />
+            {/* Reduced height for video */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="object-cover rounded-lg w-full h-[400px] lg:h-[650px]"
+            >
+              <source
+                src="https://videos.pexels.com/video-files/2003070/2003070-sd_640_360_24fps.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
           </motion.div>
 
           <motion.div

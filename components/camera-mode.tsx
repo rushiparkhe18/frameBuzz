@@ -10,7 +10,7 @@ export default function CameraMode() {
   const [isMuted, setIsMuted] = useState(true)
   const [videoProgress, setVideoProgress] = useState(0)
   const [showControls, setShowControls] = useState(true)
-  const [videoSrc, setVideoSrc] = useState("/placeholder.svg")
+  const [videoSrc, setVideoSrc] = useState("https://videos.pexels.com/video-files/2003070/2003070-sd_640_360_24fps.mp4")
 
   // Hide controls after inactivity
   useEffect(() => {

@@ -28,11 +28,11 @@ export default function CinematicReel() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
           <video
-            poster="/placeholder.svg?height=720&width=1280"
+            poster="https://videos.pexels.com/video-files/2003070/2003070-sd_640_360_24fps.mp4?height=720&width=1280"
             className="w-full h-full object-cover"
             controls={false}
           >
-            <source src="/placeholder.svg" type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/2003070/2003070-sd_640_360_24fps.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 

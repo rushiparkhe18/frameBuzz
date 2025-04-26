@@ -16,7 +16,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "frameBuzz | Professional Videography & Visual Storytelling",
+  title: "framebuzzmedia | Professional Videography & Visual Storytelling",
   description: "Professional videographer capturing life one frame at a time through cinematic storytelling",
   keywords: "videographer, cinematography, visual storytelling, video production, portfolio",
     generator: 'v0.dev'

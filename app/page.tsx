@@ -14,11 +14,13 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       <LoadingAnimation />
       <VideoHero />
-      <ServicesShowcase />
-      <FeaturedProjects />
-      <ProcessSection />
-      <ClientLogos />
       <AboutPreview />
+      <ServicesShowcase />
+      
+      <ProcessSection />
+      <FeaturedProjects />
+      <ClientLogos />
+      
       <TestimonialsSection />
       <LatestNews />
       <ContactPreview />

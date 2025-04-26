@@ -33,6 +33,7 @@ export default function VideoHero() {
   return (
     <section ref={sectionRef} className="relative w-full h-screen overflow-hidden">
       <motion.div style={{ opacity, scale }} className="absolute inset-0">
+        {/* Background Video */}
         <video
           autoPlay
           muted
@@ -41,7 +42,7 @@ export default function VideoHero() {
           className="absolute inset-0 w-full h-full object-cover"
           onCanPlay={() => setIsLoaded(true)}
         >
-          <source src="/placeholder.svg" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2020/02/20/32640-393990091_tiny.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-black/40" />

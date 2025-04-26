@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Play } from "lucide-react"
+import { Play, X } from "lucide-react"
 
 const projects = [
   {
@@ -13,7 +13,7 @@ const projects = [
     category: "Documentary",
     description: "A visual exploration of city architecture and urban life",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "urban-landscapes",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const projects = [
     category: "Event",
     description: "Capturing the emotion and beauty of wedding celebrations",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "wedding-stories",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_2",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const projects = [
     category: "Adventure",
     description: "Following climbers through breathtaking mountain landscapes",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "mountain-expedition",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_3",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const projects = [
     category: "Commercial",
     description: "Behind the scenes at Milan Fashion Week",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "fashion-week",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_4",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const projects = [
     category: "Documentary",
     description: "Exploring the mysteries of marine ecosystems",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "ocean-life",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_5",
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ const projects = [
     category: "Event",
     description: "Capturing the energy and atmosphere of live music events",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "music-festival",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_6",
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ const projects = [
     category: "Adventure",
     description: "A cinematic journey through vast desert landscapes",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "desert-journey",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_7",
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const projects = [
     category: "Commercial",
     description: "Showcasing new products through compelling visual storytelling",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "product-launch",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_8",
   },
   {
     id: 9,
@@ -77,28 +77,66 @@ const projects = [
     category: "Documentary",
     description: "Documenting efforts to protect endangered species",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    slug: "wildlife-conservation",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_9",
   },
 ]
 
 export default function ProjectsGrid() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project, index) => (
+    <div className="relative">
+      {/* Video Modal */}
+      {activeVideo && (
         <motion.div
-          key={project.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
         >
-          <ProjectCard project={project} />
+          <div className="relative w-full max-w-4xl aspect-video">
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute -top-6 right-0 text-white p-2 rounded-full hover:bg-white/20"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <iframe
+              src={activeVideo}
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              className="w-full h-full rounded-lg shadow-lg"
+            />
+          </div>
         </motion.div>
-      ))}
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <ProjectCard
+              project={project}
+              onOpenVideo={setActiveVideo}
+            />
+          </motion.div>
+        ))}
+      </div>
     </div>
   )
 }
 
-function ProjectCard({ project }: { project: (typeof projects)[0] }) {
+function ProjectCard({
+  project,
+  onOpenVideo,
+}: {
+  project: (typeof projects)[0]
+  onOpenVideo: (url: string) => void
+}) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -107,7 +145,10 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link href={`/projects/${project.slug}`} className="block aspect-video relative overflow-hidden">
+      <div
+        onClick={() => onOpenVideo(project.videoUrl)}
+        className="block aspect-video relative overflow-hidden cursor-pointer"
+      >
         <Image
           src={project.thumbnail || "/placeholder.svg"}
           alt={project.title}
@@ -138,7 +179,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           <h3 className="text-xl text-white font-light mb-1">{project.title}</h3>
           <p className="text-sm text-white/80">{project.description}</p>
         </div>
-      </Link>
+      </div>
     </div>
   )
 }
